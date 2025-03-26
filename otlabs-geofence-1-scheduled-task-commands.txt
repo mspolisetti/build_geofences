@@ -1,0 +1,6 @@
+
+
+aws events put-rule --name otlabs-geofence-1-daily-run --schedule-expression "cron(0 9 ? * * *)" --state "ENABLED" --description "Daily run for OTLabs Geofence-1 Pipeline scheduled everyday at 3am"  
+
+
+aws events put-targets --cli-input-json file://instructions/otlabs-geofence-1-rule-target.json

@@ -1,0 +1,32 @@
+
+1. If there was a previous image with that name you can always delete the previous one before rebuilding:
+        docker rmi otlabs-geofence-1-pipeline
+   If the image doesn't exist yet, run the following command in the terminal:
+        docker build -t otlabs-geofence-1-pipeline .
+For Debugging:
+2. Run the following command to create and start the docker container (-d is for running in background)
+        docker run --rm --name otlabs-geofence-1-pipeline -d otlabs-geofence-1-pipeline
+		docker run --rm --name otlabs-geofence-1-pipeline otlabs-geofence-1-pipeline
+3. Run this command to output logs into a file (only if you ran it with -d):
+        docker logs -f otlabs-geofence-1-pipeline > output.log
+
+
+For Production:
+Retrieve an authentication token and authenticate your Docker client to your registry.
+Use the AWS CLI:
+
+aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 454708247368.dkr.ecr.us-west-2.amazonaws.com
+
+Note: If you receive an error using the AWS CLI, make sure that you have the latest version of the AWS CLI and Docker installed.
+Build your Docker image using the following command. For information on building a Docker file from scratch see the instructions here 
+. You can skip this step if your image is already built:
+
+docker build -t otlabs-geofence-1-pipeline .
+
+After the build completes, tag your image so you can push the image to this repository:
+
+docker tag otlabs-geofence-1-pipeline:latest 454708247368.dkr.ecr.us-west-2.amazonaws.com/otlabs-geofence-1-pipeline:latest
+
+Run the following command to push this image to your newly created AWS repository:
+
+docker push 454708247368.dkr.ecr.us-west-2.amazonaws.com/otlabs-geofence-1-pipeline:latest

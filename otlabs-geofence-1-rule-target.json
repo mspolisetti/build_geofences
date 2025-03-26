@@ -1,0 +1,25 @@
+{	"Rule": "otlabs-geofence-1-daily-run",
+    "Targets": [
+        {
+            "Id": "otlabs-geofence-1-daily-run-target",
+            "Arn": "arn:aws:ecs:us-west-2:454708247368:cluster/otlabs-data-pipelines",
+            "RoleArn": "arn:aws:iam::454708247368:role/ecsEventsRole",            
+            "EcsParameters": {
+                "TaskDefinitionArn": "arn:aws:ecs:us-west-2:454708247368:task-definition/otlabs-geofence-1-pipeline:2",
+                "TaskCount": 1,
+                "LaunchType": "FARGATE",
+                "NetworkConfiguration": {
+                    "awsvpcConfiguration": {
+                        "Subnets": [
+                            "subnet-0bc7495a384733bd2"
+                        ],
+                        "SecurityGroups": [
+                            "sg-046f1acca3656b7af"
+                        ],
+                        "AssignPublicIp": "ENABLED"
+                    }
+                }
+            }
+        }
+    ]
+}
